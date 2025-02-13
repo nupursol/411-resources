@@ -33,5 +33,10 @@ def repeat():
     )
     return response
 
+@app.route('/hang')
+def hang():
+    while True:
+        pass
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=os.getenv('PORT', default=None), debug=True)
+    app.run(host='0.0.0.0', port=os.getenv('PORT', default=None), debug=True, threaded=False)

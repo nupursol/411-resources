@@ -1,0 +1,32 @@
+1. Agile
+	a. User Stories 1:
+	As a vanilla git power-user that has never seen GiggleGit before, I want to get comfortable with its unique merge system to understand how memes are integrated into the workflow.
+	b. User Stories 2:
+	As a team lead onboarding an experienced GiggleGit user, I want a plan that will make sure that new experienced team members can integrate into our processes as effortlessly as possible in order to minimize any onboarding friction.
+
+	c. User Story 3: As a developer new to GiggleGit, I want to make a sandbox environment where I can experiment with GiggleGits  meme merge system in a risk-free setup so that I can understand it's features before using it on real projects for my company.
+	Task: Use sandbox environment for practice
+	Ticket 1: Create sandbox environment
+		- Set up a disposable private repo enabled with GiggleGit
+		- Add sample branches
+	Ticket 2: Do practice challenges 
+		- Use your setup to plan out several exercises with increasing difficulty and feedback
+
+	d."As a user I want to be able to authenticate on a new machine" is not a user story because it is missing a couple of key components of a user story, namely benefit and user identification. The general formatting of a user story is “as a <specific actor> I want to <some action> in order to <benefit>”. In this example there is no explanation as to why they want to be able to authenticate or who the user (specific actor) is. Thus, this is a requirement since it describes functionality but not a user story because of the missing explanation of benefit or clear description of who the user is. 
+
+
+2. Formal Requirements
+	a. Goal:
+		- Enable structured user studies to evaluate how SnickerSync improves the diffing experience in GiggleGit
+	   Non-goal:
+		- Redesign GiggleGit's existing non-SnickerSync diff logic
+
+	b. Non-functional requirement #1: Usability
+		SnickerSync must support structured user studies with randomized group assignments and consistent tracking of user interactions
+
+		- Functional requirement 1: Users must be randomly assigned to either a control group (GiggleGit diff) or an experimental group (SnickerSync diff) in their first session
+		- Functional requirement 2: The system must log user actions ( such as time spent on their diffs, number of merge conflicts etc) while ensuring dfata privacy
+
+	   Non-functional requirement #2: Improvability
+		- PMs must be able to modify SnickerSync's settings used in SnickerSync’s diff visualizations during different phases in experimentation
+		- PMs must have access to an analytics dashboard displaying real-time results of the user study such as engagement metrics and feedback summaries

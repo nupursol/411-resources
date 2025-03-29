@@ -12,10 +12,27 @@ configure_logger(logger)
 
 
 class RingModel:
+    """
+    manages a list of boxers, allows two boxers to enter the ring and facilitates the fight
+    between them
+
+    attributes:
+        ring (List[Boxer]): list of boxers currently in the ring
+    """
     def __init__(self):
+        """ Initializes an empty ring with no boxers"""
         self.ring: List[Boxer] = []
 
     def fight(self) -> str:
+        """
+        simulates a fight between two boxers in the ring and the winner is determined based
+        on their fighting skills the stats of both boxers are updated after the fight
+
+        returns:
+            str: name of winning boxer
+        raises:
+            ValueError: if there are fewer than two boxers in the ring
+        """
         if len(self.ring) < 2:
             raise ValueError("There must be two boxers to start a fight.")
 
@@ -46,11 +63,21 @@ class RingModel:
         return winner.name
 
     def clear_ring(self):
+        """ clears ring """
         if not self.ring:
             return
         self.ring.clear()
 
     def enter_ring(self, boxer: Boxer):
+        """
+        adds a boxer to the ring with max of two at a time
+
+        args:
+            boxer (Boxer): boxer to add to ring
+        raises:
+            TypeError: if boxer is not an instance of the Boxer class
+            ValueError: if ring is already full
+        """
         if not isinstance(boxer, Boxer):
             raise TypeError(f"Invalid type: Expected 'Boxer', got '{type(boxer).__name__}'")
 
@@ -60,6 +87,12 @@ class RingModel:
         self.ring.append(boxer)
 
     def get_boxers(self) -> List[Boxer]:
+        """
+        gets the boxers currently in the ring
+
+        returns:
+            List[Boxer]: a list with the two boxers in the ring
+        """
         if not self.ring:
             pass
         else:
@@ -68,6 +101,14 @@ class RingModel:
         return self.ring
 
     def get_fighting_skill(self, boxer: Boxer) -> float:
+        """
+        calculates fighting skill of boxer based on weight, reach and age
+
+        args:
+            boxer (Boxer): boxer whose skill is being calculated
+        returns:
+            float: calculated fighting skill of boxer
+        """
         # Arbitrary calculations
         age_modifier = -1 if boxer.age < 25 else (-2 if boxer.age > 35 else 0)
         skill = (boxer.weight * len(boxer.name)) + (boxer.reach / 10) + age_modifier

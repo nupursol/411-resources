@@ -33,10 +33,15 @@ class RingModel:
         raises:
             ValueError: if there are fewer than two boxers in the ring
         """
+        logger.info("Attempting to simulate a fight between the boxers in the ring")
+
         if len(self.ring) < 2:
+            logger.error("There must be two boxers to start a fight.")
             raise ValueError("There must be two boxers to start a fight.")
 
         boxer_1, boxer_2 = self.get_boxers()
+
+        logger.info(f"Fight started between {boxer_1.name} and {boxer_2.name}.")
 
         skill_1 = self.get_fighting_skill(boxer_1)
         skill_2 = self.get_fighting_skill(boxer_2)
@@ -60,13 +65,19 @@ class RingModel:
 
         self.clear_ring()
 
+        logger.info(f"Fight sim finished. {winner.name} won.")
+
         return winner.name
 
     def clear_ring(self):
         """ clears ring """
+        logger.info("Attempting to clear the ring")
+
         if not self.ring:
+            logger.warning("The ring is already clear")
             return
         self.ring.clear()
+        logger.info("Ring cleared")
 
     def enter_ring(self, boxer: Boxer):
         """
@@ -78,13 +89,18 @@ class RingModel:
             TypeError: if boxer is not an instance of the Boxer class
             ValueError: if ring is already full
         """
+        logger.info("Attempting to add boxer to the ring")
+
         if not isinstance(boxer, Boxer):
+            logger.error(f"Invalid type: Expected 'Boxer', got '{type(boxer).__name__}'.")
             raise TypeError(f"Invalid type: Expected 'Boxer', got '{type(boxer).__name__}'")
 
         if len(self.ring) >= 2:
+            logger.warning("Ring is full, cannot add more boxers.")
             raise ValueError("Ring is full, cannot add more boxers.")
 
         self.ring.append(boxer)
+        logger.info(f"{boxer.name} was added to the ring.")
 
     def get_boxers(self) -> List[Boxer]:
         """
@@ -93,9 +109,13 @@ class RingModel:
         returns:
             List[Boxer]: a list with the two boxers in the ring
         """
+        logger.info("Attempting to get list of boxers in the ring")
+
         if not self.ring:
+            logger.warning("No boxers currently in the ring.")
             pass
         else:
+            logger.info("Got list of boxers in the ring successfully")
             pass
 
         return self.ring
@@ -109,8 +129,11 @@ class RingModel:
         returns:
             float: calculated fighting skill of boxer
         """
+        logger.info(f"Attempting to calculate boxer '{boxer.name}' fighting skill")
+
         # Arbitrary calculations
         age_modifier = -1 if boxer.age < 25 else (-2 if boxer.age > 35 else 0)
         skill = (boxer.weight * len(boxer.name)) + (boxer.reach / 10) + age_modifier
 
+        logger.info(f"Calculated fighting skill for boxer '{boxer.name}': {skill}")
         return skill

@@ -326,7 +326,7 @@ def update_boxer_stats(boxer_id: int, result: str) -> None:
 
             if result == 'win':
                 cursor.execute("UPDATE boxers SET fights = fights + 1, wins = wins + 1 WHERE id = ?", (boxer_id,))
-            else:  # result == 'loss'
+            else:
                 cursor.execute("UPDATE boxers SET fights = fights + 1 WHERE id = ?", (boxer_id,))
 
             conn.commit()
